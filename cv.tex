@@ -1,240 +1,305 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Developer CV
-% LaTeX Class
-% Version 2.0 (21/05/2023)
+%%%%%%%%%%%%%%%%%
+% This is an sample CV template created using altacv.cls
+% (v1.6.5, 3 Nov 2022) written by LianTze Lim (liantze@gmail.com), based on the
+% CV created by BusinessInsider at http://www.businessinsider.my/a-sample-resume-for-marissa-mayer-2016-7/?r=US&IR=T
 %
-% Authors:
-% Will Fantom (willf@ntom.dev)
-% Based on a template by Jan Küster (info@jankuester.com) and Jan Vorisek (jan@vorisek.me)
-%
-% License:
-% The MIT License (see included LICENSE file)
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% It may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%%%%%%%%%%%%%%%%
 
-%----------------------------------------------------------------
-%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
-%----------------------------------------------------------------
+%% Use the "normalphoto" option if you want a normal photo instead of cropped to a circle
+% \documentclass[10pt,a4paper,normalphoto]{altacv}
 
-\documentclass[9pt]{developercv} % Default font size, values from 8-12pt are recommended
+\documentclass[10pt,a4paper,ragged2e,withhyper]{altacv}
 
-%----------------------------------------------------------------
+%% AltaCV uses the fontawesome5 package.
+%% See http://texdoc.net/pkg/fontawesome5 for full list of symbols.
+
+% Change the page layout if you need to
+\geometry{left=1.25cm,right=1.25cm,top=1.5cm,bottom=1.5cm,columnsep=1.2cm}
+
+% The paracol package lets you typeset columns of text in parallel
+\usepackage{paracol}
+
+
+% Change the font if you want to, depending on whether
+% you're using pdflatex or xelatex/lualatex
+\ifxetexorluatex
+  % If using xelatex or lualatex:
+  \setmainfont{Lato}
+\else
+  % If using pdflatex:
+  \usepackage[default]{lato}
+\fi
+
+% Change the colours if you want to
+\definecolor{VividPurple}{HTML}{3E0097}
+\definecolor{SlateGrey}{HTML}{2E2E2E}
+\definecolor{LightGrey}{HTML}{666666}
+% \colorlet{name}{black}
+% \colorlet{tagline}{PastelRed}
+\colorlet{heading}{VividPurple}
+\colorlet{headingrule}{VividPurple}
+% \colorlet{subheading}{PastelRed}
+\colorlet{accent}{VividPurple}
+\colorlet{emphasis}{SlateGrey}
+\colorlet{body}{LightGrey}
+
+% Change some fonts, if necessary
+% \renewcommand{\namefont}{\Huge\rmfamily\bfseries}
+% \renewcommand{\personalinfofont}{\footnotesize}
+% \renewcommand{\cvsectionfont}{\LARGE\rmfamily\bfseries}
+% \renewcommand{\cvsubsectionfont}{\large\bfseries}
+
+% Change the bullets for itemize and rating marker
+% for \cvskill if you want to
+\renewcommand{\itemmarker}{{\small\textbullet}}
+\renewcommand{\ratingmarker}{\faCircle}
+
+%% Use (and optionally edit if necessary) this .tex if you
+%% want to use an author-year reference style like APA(6)
+%% for your publication list
+% \input{pubs-authoryear}
+
+%% Use (and optionally edit if necessary) this .tex if you
+%% want an originally numerical reference style like IEEE
+%% for your publication list
+\input{pubs-num}
+
+%% sample.bib contains your publications
+\addbibresource{sample.bib}
 
 \begin{document}
+\name{Eleanor Davies}
+\tagline{Researcher, Developer and Professional Nerd}
+% Cropped to square from https://en.wikipedia.org/wiki/Marissa_Mayer#/media/File:Marissa_Mayer_May_2014_(cropped).jpg, CC-BY 2.0
+%% You can add multiple photos on the left or right
+\photoR{2.5cm}{profile}
+% \photoL{2cm}{Yacht_High,Suitcase_High}
+\personalinfo{%
+  % Not all of these are required!
+  % You can add your own with \printinfo{symbol}{detail}
+  \homepage{eleanordavies.uk}
+  \email{ellie@mavieson.co.uk}
+  \github{github.com/mavi0} % I'm just making this up though.
+  \location{Lancaster, UK}
+%   \phone{000-00-0000}
+  % \mailaddress{Address, Street, 00000 County}
+  
+  % \twitter{@marissamayer}
+  % \linkedin{marissamayer}
 
-%----------------------------------------------------------------
-%	TITLE AND CONTACT INFORMATION
-%----------------------------------------------------------------
+%   \orcid{0000-0000-0000-0000} % Obviously making this up too.
+  %% You can add your own arbitrary detail with
+  %% \printinfo{symbol}{detail}[optional hyperlink prefix]
+  % \printinfo{\faPaw}{Hey ho!}
+  %% Or you can declare your own field with
+  %% \NewInfoFiled{fieldname}{symbol}[optional hyperlink prefix] and use it:
+  % \NewInfoField{gitlab}{\faGitlab}[https://gitlab.com/]
+  % \gitlab{your_id}
+	%%
+  %% For services and platforms like Mastodon where there isn't a
+  %% straightforward relation between the user ID/nickname and the hyperlink,
+  %% you can use \printinfo directly e.g.
+  % \printinfo{\faMastodon}{@username@instace}[https://instance.url/@username]
+  %% But if you absolutely want to create new dedicated info fields for
+  %% such platforms, then use \NewInfoField* with a star:
+  % \NewInfoField*{mastodon}{\faMastodon}
+  %% then you can use \mastodon, with TWO arguments where the 2nd argument is
+  %% the full hyperlink.
+  % \mastodon{@username@instance}{https://instance.url/@username}
+}
 
-\begin{minipage}[t]{0.38\textwidth} % 38% of the page width for name
-	\vspace{-\baselineskip} % Required for vertically aligning minipages
+\makecvheader
 
-	% If your name is very short, use just one of the lines below
-	% If your name is very long, reduce the font size or make the minipage wider and reduce the others proportionately
-	\colorbox{black}{{\HUGE\textcolor{white}{\textbf{\MakeUppercase{Will}}}}}\hspace{0.35cm}\footnotesize{(he/him)} % First name
+%% Depending on your tastes, you may want to make fonts of itemize environments slightly smaller
+\AtBeginEnvironment{itemize}{\small}
 
-	\colorbox{black}{{\HUGE\textcolor{white}{\textbf{\MakeUppercase{Fantom}}}}} % Last name
+%% Set the left/right column width ratio to 6:4.
+\columnratio{0.6}
 
-	\vspace{6pt}
+% Start a 2-column paracol. Both the left and right columns will automatically
+% break across pages if things get too long.
+\begin{paracol}{2}
 
-	{\huge Researcher, Inventor,\\ Developer, Wizard, Nerd} % Career or current job title
-\end{minipage}
-\begin{minipage}[t]{0.22\textwidth} % 27.5% of the page width for the first row of icons
-	\vspace{-\baselineskip} % Required for vertically aligning minipages
+\cvsection{Experience}
 
-	% The first parameter is the FontAwesome icon name, the second is the box size and the third is the text
-	% Other icons can be found by referring to fontawesome.pdf (supplied with the template) and using the word after \fa in the command for the icon you want
-	\icon{MapMarker}{12}{lancaster, uk}\\
-	\icon{Phone}{12}{+44 742 8147 463}\\
-	\icon{At}{12}{\href{mailto:wf@ntom.dev}{wf@ntom.dev}}\\
-\end{minipage}
-\begin{minipage}[t]{0.22\textwidth} % 27.5% of the page width for the second row of icons
-	\vspace{-\baselineskip} % Required for vertically aligning minipages
-	\icon{Globe}{12}{\href{https://willfantom.dev}{willfantom.dev}}\\
-	\icon{Github}{12}{\href{https://github.com/willfantom}{@willfantom}}\\
-	\icon{Twitter}{12}{\href{https://twitter.com/@will\_fantom}{@will\_fantom}}\\
-\end{minipage}
-\begin{minipage}[t]{0.18\textwidth} % 18% of the page width for pic
-	\vspace{-\baselineskip} % Required for vertically aligning minipages
-	\hfill
-	{%
-		\setlength{\fboxsep}{0pt}%
-		\setlength{\fboxrule}{5pt}%
-		\fbox{\includegraphics[width=0.8\linewidth]{assets/profile.jpg}}%
-	}%
-\end{minipage}
+\cvevent{Research Associate}{Lancaster University}{April 2018 -- Present}{Lancaster, UK}
 
-\vspace{0.15cm}
+\textbf{\textit{TUDOR }| February 2023 - Ongoing:} 
 
-%----------------------------------------------------------------
-%	INTRODUCTION, SKILLS AND TECHNOLOGIES
-%----------------------------------------------------------------
+\textit{Towards Ubiquitous 3D Open Resilient Networks}. Investigating tight integration between Satellite and Terrestrial based 5G networking for the end consumer.
 
-\cvsect{Who Am I?}
+\divider
 
-\begin{minipage}[t]{0.35\textwidth} % 40% of the page width for the introduction text
-	\vspace{-\baselineskip} % Required for vertically aligning minipages
+\textbf{\textit{MANY }| February 2020 - August 2022:}  
 
-	I am a systems reseacher and PhD student with a focus on network and cloud
-	infrastrucutres. The opportunities I have had in my research to work alongside large tech
-	companies as they adopt modern software deployment has allowed me to design
-	and develop novel tools for cloud management and CI/CD. I typically spend my
-	weekends on Pi projects and building apps for my home server.\\
-\end{minipage}
-\hfill % Whitespace between
-\begin{minipage}[t]{0.31\textwidth} % 50% of the page for the skills bar chart
-	\vspace{-\baselineskip} % Required for vertically aligning minipages
-	\begin{barchart}{4.1}
-		\baritem{Python}{82}
-		\baritem{Go}{100}
-		\baritem{C/C++}{68}
-		\baritem{Java}{50}
-		\baritem{LaTeX}{60}
-		\baritem{Git}{80}
-	\end{barchart}
-\end{minipage}
-\hfill % Whitespace between
-\begin{minipage}[t]{0.29\textwidth} % 50% of the page for the skills bar chart
-	\vspace{-\baselineskip}\vspace{-\baselineskip} % Required for vertically aligning minipages
-	\cvsect{Tools}\\
-	\mbox{\cvtag{Docker}\cvtag{LibVirt}\cvtag{Openstack}}
-	\mbox{\cvtag{Kubernetes}\cvtag{FFMpeg}\cvtag{Linux}}
-	\mbox{\cvtag{GitHub Actions}\cvtag{GitLab CI}}
-	\mbox{\cvtag{DevContainer}\cvtag{Microsoft Word 2003}}
-	\mbox{\cvtag{InfluxDB}\cvtag{OpenWRT}\cvtag{VS Code}}
-\end{minipage}
+\textit{Mobile Access North Yorkshire.} Built upon the research conducted for 5GRIT to apply these techniques to determine the suitability of N77 C-Band 5G Networks for rural areas. 
 
-%----------------------------------------------------------------
-%	EXPERIENCE
-%----------------------------------------------------------------
+\divider
 
-\vspace{-1em}
-\cvsect{Experience}
+\textbf{\textit{NG-CDI }| September 2019 - February 2023:} 
 
-\begin{entrylist}
-	\entry
-	{2023 -- Present}
-	{Research Associate: AI4ME}
-	{Lancaster University}
-	{Working alongside the BBC and other academic partners to realize a testbed
-		for multi-cloud deployments of object-based media applications. This focuses
-		on how both micro and macroscopic telemetry can influence orchestration decisions.\\
-		\texttt{Go}\slashsep\texttt{Docker}\slashsep\texttt{LibVirt}\slashsep\texttt{Consul}\slashsep\texttt{Cloud}\slashsep\texttt{Linux}}
-	\entry
-	{2019 -- 2022}
-	{Associate Lecturer}
-	{Lancaster University}
-	{Designed, developed, implemented and taught a new novel software-defined
-		networking coursework as part of the Advanced Networking undergraduate course.
-		Also assisted in the delivery of the Distributed Systems course though lab
-		assistance and mini Docker focused lectures.
-		\\
-		\texttt{OpenFlow \& SDN}\slashsep\texttt{Docker}\slashsep\texttt{Python}\slashsep\texttt{Java}\slashsep\texttt{Linux}}
-	\entry
-	{2020 -- 2022\\\footnotesize{part time}}
-	{Research Associate: NG-CDI \& TOUCAN}
-	{Lancaster University}
-	{Worked alongside BT and other academic partners to investigate how cloud
-		practices (primarily DevOps) could be utilized in network infrastructure as
-		they transition from hardware-based deployments to software.\\
-		\texttt{Go}\slashsep\texttt{C}\slashsep\texttt{GitHub Actions}\slashsep\texttt{Unikraft}\slashsep\texttt{Prometheus}\slashsep\texttt{Grafana}\slashsep\texttt{Træfik}}
-\end{entrylist}
+\textit{Next Generation - Converged Digital Infrastructure.} Investigated the role of Intent-Based networking in large scale networks and designed and developed a software stack which leverages semantic knowledge to drive automated network layer operations.
 
-%----------------------------------------------------------------
-%	EDUCATION
-%----------------------------------------------------------------
+\divider
 
-\vspace{-1em}
-\cvsect{Education}
+\textbf{\textit{5GRIT }| April 2018 - September 2019:} 
+ 
+\textit{5G Rural Integrated Testbed.} The research focused on examining the suitability of new network access technologies for rural communities. As part of this investigation, a novel monitoring framework was developed, which included software components designed to enable comprehensive monitoring across various layers, from physical layer statistics to application layer QoE metrics.
 
-\begin{entrylist}
-	\entry
-	{2018 -- present\\\footnotesize{ending approx. 2023}}
-	{PhD -- Computer Science}
-	{Lancaster University}
-	{Working to integrate DevOps with network infrastructure operations through the
-		development of novel CI/CD practices that support the strict requirements of
-		low-level network functions and the emulation of context-specific hardware.}
-	\entry
-	{2015 -- 2018}
-	{BSc (Hons) Computer Science \textit{(1st)}}
-	{Lancaster University}
-	{Thesis included the creation and evaluation of a custom x86 OS [fantomOS] that whilst
-		monolitic, kept compile-time modularity in
-		mind.\\\texttt{Operating Systems}\slashsep\texttt{Adv.
-			Programming}\slashsep\texttt{Adv. Networking}\slashsep\texttt{Distributed Systems}\slashsep\texttt{...}}
-\end{entrylist}
+\divider
 
-%----------------------------------------------------------------
-%	PUBLICATIONS
-%----------------------------------------------------------------
+\cvevent{Associate Lecturer}{Lancaster University}{Oct 2021 -- Present}{Lancaster, UK}
+\begin{itemize}
+\item Manage and guide numerous BSc \& MSc students research thesis projects. 
+\item Oversee teaching and grading for an Undergraduate Degree module -\textit{ SCC365 Advanced Networking}. 
+\end{itemize}
 
-\vspace{-1em}
-\cvsect{Publications}
+% \divider
 
-\begin{entrylist}
-	\pubentry
-	{2023}
-	{[1st Author]}
-	{NES: Towards lifecycle automation for emulation-based experimentation}
-	{IEEE/IFIP NOMS}
-	\pubentry
-	{2022}
-	{}
-	{Improving Intent Correctness with Automated Testing}
-	{IEEE NetSoft}
-	\pubentry
-	{2022}
-	{[1st Author]}
-	{A NEAT way to test-driven network management}
-	{IEEE/IFIP NOMS}
-	\pubentry
-	{2022}
-	{}
-	{Improving network resilience with Middlebox Minions}
-	{IEEE/IFIP NOMS}
-	\pubentry
-	{2019}
-	{}
-	{DataPlane Broker: Open WAN control for multi-site service orchestration}
-	{IEEE NFV/SDN}
-\end{entrylist}
+% \cvevent{Product Engineer}{Google}{23 June 1999 -- 2001}{Palo Alto, CA}
 
-%----------------------------------------------------------------
-% ADDITIONAL INFORMATION
-%----------------------------------------------------------------
+% \begin{itemize}
+% \item Joined the company as employe \#20 and female employee \#1
+% \item Developed targeted advertisement in order to use user's search queries and show them related ads
+% \end{itemize}
 
-\begin{minipage}[t]{0.35\textwidth}
-	\vspace{-\baselineskip} % Required for vertically aligning minipages
-	\cvsect{Hobbies}\\
-	\cvtag{Home Media Server}\cvtag{Cycling}\cvtag{Coffee}\cvtag{Dog
-		Walks}\cvtag{Pi Dev Projects}\cvtag{Mario Kart}
-	\divider\\
-	\begin{minipage}[t]{0.25\textwidth}
-		\vspace{-\baselineskip} % Required for vertically aligning minipages
-		\includegraphics[width=1\linewidth]{assets/websiteqr.png}
-	\end{minipage}
-	\hfill
-	\begin{minipage}[t]{0.75\textwidth}
-		\vspace{-\baselineskip} % Required for vertically aligning minipages
-		Scan this QR Code to make sure you are seeing the latest version of my CV.\\
-		Compiled on \textit{\today}\\
-	\end{minipage}
-\end{minipage}
-\hfill
-\begin{minipage}[t]{0.6\textwidth}
-	\vspace{-\baselineskip} % Required for vertically aligning minipages
-	\cvsect{Project: NES}\\
-	Lead developer on a first of a kind cloud-native Network Emulation as a
-	Service (NEaaS) platform we called NES. This system leverages various emulation
-	technologies and unix networking tools to allow for the automated testing of
-	large-scale virtual networks. Also included the development of layer 2 mesh
-	network solution. All development work was done in Go and is packaged and
-	deployed using Docker automatically via GitHub Actions. This is now used and
-	developed in
-	projects with partners such as BT and BBC.
-\end{minipage}
+% use ONLY \newpage if you want to force a page break for
+% ONLY the currentc column
+% \newpage
 
-%----------------------------------------------------------------
+\cvsection{Publications}
+
+%% Specify your last name(s) and first name(s) as given in the .bib to automatically bold your own name in the publications list.
+%% One caveat: You need to write \bibnamedelima where there's a space in your name for this to work properly; or write \bibnamedelimi if you use initials in the .bib
+%% You can specify multiple names, especially if you have changed your name or if you need to highlight multiple authors.
+\mynames{Davies/Eleanor\bibnamedelima Davies,
+  Davies/E.}
+%% MAKE SURE THERE IS NO SPACE AFTER THE FINAL NAME IN YOUR \mynames LIST
+
+\nocite{*}
+
+\printbibliography[heading=pubtype,title={\printinfo{\faFile*[regular]}{Journal Articles}}, type=article]
+
+%% Switch to the right column. This will now automatically move to the second
+%% page if the content is too long.
+\switchcolumn
+
+% \cvsection{Life Philosophy}
+% \begin{quote}
+% ``If you don't have any shadows, you're not standing in the light.''
+% \end{quote}
+
+\cvsection{Soft Skills}
+
+\cvtag{Adaptable}
+\cvtag{Team Work}
+\cvtag{Organisation}
+\cvtag{Flexibility}
+\cvtag{Hands On}
+\cvtag{Professionalism}
+\cvtag{Responsibility}
+\cvtag{Multi-Tasking}
+\cvtag{Practical}
+\cvtag{Working Under Pressure}
+\cvtag{Teaching}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Skills %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cvsection{Development}
+
+\cvskill{Python}{5}
+\cvskill{Java}{3}
+\cvskill{Git}{4}
+\cvskill{Go}{2}
+%\cvskill{Javascript}{3}
+
+\cvsection{Tools}
+
+% \begin{itemize}
+% \item \textcolor{emphasis}{Development} 
+% \end{itemize}
+\cvtag{Python}
+\cvtag{Java}
+\cvtag{SQL}
+\cvtag{Go}
+\cvtag{FLuxQL}
+\cvtag{PHP}
+\cvtag{Git}
+\cvtag{JS}
+\cvtag{Latex}
+
+\divider\smallskip 
+
+% \begin{itemize}
+% \item \textcolor{emphasis}{Tools \& Visualisation}
+% \end{itemize}
+\cvtag{Docker}
+\cvtag{Docker Compose}
+\cvtag{InfluxDB}
+\cvtag{Grafana}
+\cvtag{Telegraf}
+\cvtag{Kubernetes}
+
+\cvtag{GitHub Actions}
+\cvtag{Kafka}
+\cvtag{GitHub CI}
+
+
+\divider\smallskip
+
+% \begin{itemize}
+% \item \textcolor{emphasis}{Networking \& Admin}
+% \end{itemize}
+\cvtag{Openflow}
+\cvtag{FaucetSDN}
+\cvtag{LibVirt}
+
+\cvtag{Traefik}
+\cvtag{ONOS}
+\cvtag{OSM}
+\cvtag{OpenSRS}
+\cvtag{Linux}
+\cvtag{OpenWRT}
+\cvtag{MS Word 2003}
+
+\cvsection{Languages}
+\cvskill{English}{5}
+\cvskill{Welsh}{4}
+\cvskill{French}{1.5}
+
+\cvsection{Education}
+
+\cvevent{BSc.\ in Computer Science, 1st Class}{Lancaster University}{October 2015 -- June 2018}{}
+
+Thesis title: Stability of BGP Routing Tables
+
+\cvsection{Others}
+\begin{itemize}
+\item UK Drivers Licence -- A2, B, B+E
+\item City \& Guilds Level 2 in Electrical Installation
+\item RYA Powerboat Level 2, RYA Competent Crew, RYA Dinghy Instructor
+\end{itemize}
+
+% \newpage
+
+% \cvsection{Referees}
+
+% % \cvref{name}{email}{mailing address}
+% \cvref{Prof.\ Alpha Beta}{Institute}{a.beta@university.edu}
+% {Address Line 1\\Address line 2}
+
+% \divider
+
+% \cvref{Prof.\ Gamma Delta}{Institute}{g.delta@university.edu}
+% {Address Line 1\\Address line 2}
+
+\end{paracol}
 
 \end{document}
